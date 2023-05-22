@@ -1,0 +1,38 @@
+plugins {
+    id "java"
+    id 'java-library'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'com.opencsv:opencsv:3.7'
+}
+
+task testing {
+    doLast {
+        println 'Running tests...'
+    }
+}
+task application {
+    mainClassName = 'app.App'
+}
+
+run {
+    main = 'app.App'
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    environment 'ROUTE_FILE', 'test.csv'
+}
+jar {
+    manifest {
+        attributes 'Main-Class': 'app.App'
+    }
+}
+javadoc {
+    options.addBooleanOption('html5', true)
+}

@@ -1,0 +1,9 @@
+rootProject.name = 'lab_5'
+include 'src:main:java'
+findProject(':src:main:java')?.name = 'java'
+include 'src:main:java:app'
+findProject(':src:main:java:app')?.name = 'app'
+include 'app'
+include 'app:main'
+findProject(':app:main')?.name = 'main'
+
